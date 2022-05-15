@@ -1,0 +1,26 @@
+:root {
+	--columns-qty: 2;
+}
+
+.Gif-container {
+  column-count: var(--columns-qty);
+	padding: 1rem;
+}
+
+@media (min-width: 600px) {
+	:root {
+		--columns-qty: 3;
+	}
+}
+
+@media (min-width: 800px) {
+	:root {
+		--columns-qty: 4;
+	}
+}
+
+@media (min-width: 1280px) {
+	:root {
+		--columns-qty: 5;
+	}
+}
