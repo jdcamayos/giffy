@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import Gif from '../components/Gif'
-import StaticContext from '../context/StaticContext'
-import useGlobalGifs from '../hooks/useGlobalGifs'
-import { Gif as GifType } from '../services/getGifs'
+import Gif from '../../components/Gif'
+import StaticContext from '../../context/StaticContext'
+import useGlobalGifs from '../../hooks/useGlobalGifs'
+import { Gif as GifType } from '../../services/getGifs'
 
-export default function Detail() {
+export default function Details() {
 	const { id } = useParams()
 	const staticContext = useContext(StaticContext)
 	const { gifs } = useGlobalGifs()

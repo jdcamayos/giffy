@@ -3,7 +3,7 @@ import logo from './logo.svg'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import SearchResults from './pages/SearchResults'
-import Detail from './pages/Detail'
+import Details from './pages/Details'
 import StaticContext, { contextValue } from './context/StaticContext'
 import { GifsContextProvider } from './context/GifsContext'
 
@@ -21,7 +21,7 @@ export default function App() {
 							<Routes>
 								<Route path='/' element={<Home />} />
 								<Route path='/search/:keyword' element={<SearchResults />} />
-								<Route path='/gif/:id' element={<Detail />} />
+								<Route path='/gif/:id' element={<Details />} />
 							</Routes>
 						</GifsContextProvider>
 						{/* <ListOfGifs keyword='panda' /> */}

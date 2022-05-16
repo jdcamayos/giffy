@@ -1,0 +1,32 @@
+.Category-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Category-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.Category-items {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
+.Category-item {
+  padding: 0.5rem 0;
+}
+
+.Category-item:hover {
+  text-decoration: underline;
+}
+
+.Category-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+}

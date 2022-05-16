@@ -1,11 +1,10 @@
 import './Home.css'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ListOfGifs from '../../components/ListOfGifs'
 import useGifs from '../../hooks/useGifs'
 import Spinner from '../../components/Spinner'
-
-const POPULAR_GIFS: string[] = ['Matrix', 'Colombia', 'Venezuela', 'Peru', 'Argentina']
+import TrendingSearches from '../../components/TrendingSearches'
 
 export default function Home() {
 	const navigate = useNavigate()
@@ -32,18 +31,11 @@ export default function Home() {
 					placeholder='Search a gif here'
 				/>
 			</form>
-			<h3 className='Home-list-title'>Ultima busqueda</h3>
-			{loading ? <Spinner /> : <ListOfGifs gifs={gifs} />}
-			<h3 className='Home-list-title'>Los gifs mas populares</h3>
-			<ul className='Home-list-container'>
-				{POPULAR_GIFS.map((popularGif, i) => (
-					<li key={`popularGif-${i}`} className='Home-list-item'>
-						<Link to={`/search/${popularGif}`} className='Home-list-link'>
-							Gifs de {popularGif}
-						</Link>
-					</li>
-				))}
-			</ul>
+			<div className='Home-last-search'>
+				<h3 className='Home-list-title'>Ultima busqueda</h3>
+				{loading ? <Spinner /> : <ListOfGifs gifs={gifs} />}
+			</div>
+			<TrendingSearches />
 		</div>
 	)
 }
