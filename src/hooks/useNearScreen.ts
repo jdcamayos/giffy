@@ -1,16 +1,33 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from 'react'
 
-export default function useNearScreeen({ distance }: { distance?: string } = { distance: '100px' }) {
+export default function useNearScreeen(
+	{
+		distance,
+		once,
+		externalRef,
+	}: {
+		distance?: string
+		externalRef?: React.MutableRefObject<HTMLDivElement | null>
+		once?: boolean
+	} = {
+		distance: '100px',
+		once: true,
+	}
+) {
 	const [isNearScreen, setIsNearScreen] = useState(false)
 	const fromRef = useRef<HTMLDivElement | null>(null)
+
+	const ref = externalRef ? externalRef : fromRef
 
 	useEffect(() => {
 		const onChange: IntersectionObserverCallback = (entries, observer) => {
 			const el: IntersectionObserverEntry = entries[0]
-			console.log(el.isIntersecting)
+			/* console.log(el.isIntersecting) */
 			if (el.isIntersecting) {
 				setIsNearScreen(true)
-				observer.disconnect()
+				once && observer.disconnect()
+			} else {
+				setIsNearScreen(false)
 			}
 		}
 
@@ -18,7 +35,7 @@ export default function useNearScreeen({ distance }: { distance?: string } = { d
 			rootMargin: distance,
 		})
 
-		if (fromRef.current) observer.observe(fromRef.current)
+		if (ref.current) observer.observe(ref.current)
 
 		return () => observer.disconnect()
 	})

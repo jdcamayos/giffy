@@ -6,7 +6,7 @@
 	page-break-inside: avoid;
 	break-inside: avoid;
 	display: inline-block;
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
 	width: 100%;
 }
 
