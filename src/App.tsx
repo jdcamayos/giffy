@@ -26,9 +26,9 @@ export default function App() {
 									<Route path='/' element={<Home />} />
 									<Route path='/search/:keyword' element={<SearchResults />} />
 									<Route path='/gif/:id' element={<Details />} />
+									<Route path='*' element={<h1>404</h1>} />
 								</Routes>
 							</GifsContextProvider>
-							{/* <ListOfGifs keyword='panda' /> */}
 						</section>
 					</Suspense>
 				</div>

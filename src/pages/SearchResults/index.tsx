@@ -1,5 +1,6 @@
 import debounce from 'just-debounce-it'
 import { useCallback, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import useNearScreeen from 'src/hooks/useNearScreen'
 import ListOfGifs from '../../components/ListOfGifs'
@@ -11,11 +12,8 @@ export default function SearchResults() {
 	const { loading, gifs, setPage } = useGifs({ keyword: String(keyword) })
 	const externalRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null)
 	const { isNearScreen } = useNearScreeen({ distance: '200px', externalRef, once: false })
+	const title = gifs ? `${gifs.length} Resultados de ${keyword}` : ''
 
-	/* const handleNextPage = () => {
-		setPage(prevPage => prevPage + 1)
-	} */
-	/* const handleNextPage = () => setPage(prevPage => prevPage + 1) */
 	const debounceHandleNextpage = useCallback(
 		debounce(() => setPage(prevPage => prevPage + 1), 1000),
 		[]
@@ -27,6 +25,9 @@ export default function SearchResults() {
 
 	return (
 		<>
+			<Helmet>
+				<title>{title} | Giffy</title>
+			</Helmet>
 			<h2 className='App-title'>{decodeURI(String(keyword))}</h2>
 			{loading ? (
 				<Spinner />

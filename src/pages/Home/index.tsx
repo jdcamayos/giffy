@@ -6,6 +6,7 @@ import Spinner from '../../components/Spinner'
 import TrendingSearches from '../../components/TrendingSearches'
 import SearchForm from 'src/components/SearchForm'
 import { useCallback } from 'react'
+import { Helmet } from 'react-helmet'
 
 export default function Home() {
 	const navigate = useNavigate()
@@ -20,13 +21,18 @@ export default function Home() {
 	)
 
 	return (
-		<div>
-			<SearchForm onSubmit={handleSubmit} />
-			<div className='Home-last-search'>
-				<h3 className='Home-list-title'>Ultima busqueda</h3>
-				{loading ? <Spinner /> : <ListOfGifs gifs={gifs} />}
+		<>
+			<Helmet>
+				<title>Home | Giffy</title>
+			</Helmet>
+			<div>
+				<SearchForm onSubmit={handleSubmit} />
+				<div className='Home-last-search'>
+					<h3 className='Home-list-title'>Ultima busqueda</h3>
+					{loading ? <Spinner /> : <ListOfGifs gifs={gifs} />}
+				</div>
+				<TrendingSearches />
 			</div>
-			<TrendingSearches />
-		</div>
+		</>
 	)
 }
