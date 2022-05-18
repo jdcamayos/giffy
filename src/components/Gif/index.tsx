@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import './Gif.css'
 
@@ -6,8 +7,7 @@ type Props = {
 	title: string
 	url: string
 }
-
-export default function Gif({ id, title, url }: Props) {
+function Gif({ id, title, url }: Props) {
 	return (
 		<Link className='Gif-link' to={`/gif/${id}`}>
 			<div className='Gif'>
@@ -17,3 +17,7 @@ export default function Gif({ id, title, url }: Props) {
 		</Link>
 	)
 }
+
+export default memo(Gif, (prevProps, nextProps) => {
+	return prevProps.id === nextProps.id
+})
