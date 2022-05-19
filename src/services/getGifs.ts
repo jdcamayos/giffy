@@ -33,10 +33,21 @@ const fromApiResponseToGifs = (apiResponse: ApiResponse): Gif[] => {
 	}
 }
 
-const getGifs = async ({ limit = 5, keyword = 'morty', page = 0 } = {}) => {
+interface GetGifs {
+	limit?: number
+	keyword?: string
+	page?: number
+	rating?: string
+}
+
+const getGifs = async (
+	{ limit, keyword, page, rating }: GetGifs = { limit: 5, keyword: 'random', page: 0, rating: 'g' }
+) => {
+	limit = limit ? limit : 5
+	page = page ? page : 0
 	const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${keyword}&limit=${limit}&offset=${
 		page * limit
-	}&rating=g&lang=en`
+	}&rating=${rating}&lang=en`
 
 	return fetch(apiUrl)
 		.then(res => res.json())

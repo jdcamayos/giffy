@@ -45,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-helmet": "^6.1.5"
+    "@testing-library/react-hooks": "^8.0.0",
+    "@types/react-helmet": "^6.1.5",
+    "react-test-renderer": "^18.1.0"
   }
 }

@@ -2,14 +2,15 @@ import debounce from 'just-debounce-it'
 import { useCallback, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
+import SearchForm from 'src/components/SearchForm'
 import useNearScreeen from 'src/hooks/useNearScreen'
 import ListOfGifs from '../../components/ListOfGifs'
 import Spinner from '../../components/Spinner'
 import useGifs from '../../hooks/useGifs'
 
 export default function SearchResults() {
-	const { keyword } = useParams()
-	const { loading, gifs, setPage } = useGifs({ keyword: String(keyword) })
+	const { keyword = 'random', rating = 'g' } = useParams()
+	const { loading, gifs, setPage } = useGifs({ keyword: keyword, rating })
 	const externalRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null)
 	const { isNearScreen } = useNearScreeen({ distance: '200px', externalRef, once: false })
 	const title = gifs ? `${gifs.length} Resultados de ${keyword}` : ''
@@ -28,6 +29,7 @@ export default function SearchResults() {
 			<Helmet>
 				<title>{title} | Giffy</title>
 			</Helmet>
+			<SearchForm initialKeyword={keyword} initialRating={rating} />
 			<h2 className='App-title'>{decodeURI(String(keyword))}</h2>
 			{loading ? (
 				<Spinner />
