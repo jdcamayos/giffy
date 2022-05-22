@@ -1,0 +1,18 @@
+.gf-header {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.gf-header a,
+button {
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.gf-header a:hover,
+button:hover {
+	text-decoration: underline;
+}

@@ -1,22 +1,24 @@
 import './App.css'
 import logo from './logo.svg'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-/* import Home from './pages/Home' */
+import Header from './components/Header'
 import SearchResults from './pages/SearchResults'
 import Details from './pages/Details'
-import StaticContext, { contextValue } from './context/StaticContext'
 import { GifsContextProvider } from './context/GifsContext'
 import { lazy, Suspense } from 'react'
+import Login from './pages/Login'
+import { UserContextProvider } from './context/UserContext'
 
 const Home = lazy(() => import('./pages/Home'))
 
 export default function App() {
 	return (
-		<StaticContext.Provider value={contextValue}>
+		<UserContextProvider>
 			<Router>
 				<div className='App'>
 					<Suspense fallback={null}>
 						<section className='App-content'>
+							<Header />
 							<Link to='/' className='App-title-container'>
 								<img src={logo} alt='Logo' className='App-logo' />
 								<h1 className='App-title'>Giffy</h1>
@@ -27,6 +29,7 @@ export default function App() {
 									<Route path='/search/:keyword/' element={<SearchResults />} />
 									<Route path='/search/:keyword/:rating' element={<SearchResults />} />
 									<Route path='/gif/:id' element={<Details />} />
+									<Route path='/login' element={<Login />} />
 									<Route path='*' element={<h1>404</h1>} />
 								</Routes>
 							</GifsContextProvider>
@@ -34,6 +37,6 @@ export default function App() {
 					</Suspense>
 				</div>
 			</Router>
-		</StaticContext.Provider>
+		</UserContextProvider>
 	)
 }

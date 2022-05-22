@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import Fav from '../Fav'
 import './Gif.css'
 
 type Props = {
@@ -9,12 +10,17 @@ type Props = {
 }
 function Gif({ id, title, url }: Props) {
 	return (
-		<Link className='Gif-link' to={`/gif/${id}`}>
+		<div>
 			<div className='Gif'>
-				<img src={url} alt={title} />
-				<h4>{title}</h4>
+				<Link className='Gif-link' to={`/gif/${id}`}>
+					<img src={url} alt={title} />
+				</Link>
+				<div className='Gif-buttons'>
+					<h4>{title}</h4>
+					<Fav id={id} />
+				</div>
 			</div>
-		</Link>
+		</div>
 	)
 }
 

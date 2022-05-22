@@ -1,0 +1,25 @@
+.Fav-button {
+	background: transparent;
+	border: 1px solid red;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-decoration: none !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  transition: all 0.3s ease;
+}
+
+.Fav-button span {
+	color: red;
+}
+
+.Fav-button:hover {
+	background-color: red;
+}
+
+.Fav-button:hover span {
+	color: white;
+	cursor: pointer;
+}
