@@ -1,5 +1,7 @@
 import { useCallback, useContext, useState } from 'react'
 import Context from 'src/context/UserContext'
+import addFavService from 'src/services/addFav'
+import getFavs from 'src/services/getFavs'
 import loginService from 'src/services/login'
 
 export default function useUser() {
@@ -24,11 +26,18 @@ export default function useUser() {
 		[setAuth]
 	)
 
-	const fav = useCallback(({ id }: { id: string }) => {
-		addFavService({ id, token: auth.token })
-			.then(favs => setFavs(favs))
-			.catch(err => console.log(err))
-	}, [])
+	const addFav = useCallback(
+		({ id }: { id: string }) => {
+			addFavService({ id, token: auth.token })
+				.then(favs => {
+					getFavs({ token: auth.token })
+						.then(res => setFavs(res))
+						.catch(err => console.log(err))
+				})
+				.catch(err => console.log(err))
+		},
+		[setFavs, auth.token]
+	)
 
 	const logout = useCallback(() => {
 		setAuth({ token: '' })
@@ -41,5 +50,7 @@ export default function useUser() {
 		hasLoginError: state.error,
 		login,
 		logout,
+		addFav,
+		favs,
 	}
 }

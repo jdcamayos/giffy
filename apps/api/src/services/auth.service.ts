@@ -22,6 +22,7 @@ export default class AuthService {
 
 	postAuthorize(credentials: PostCredentials) {
 		const payload = {
+			id: credentials.id,
 			iss: credentials.username,
 			exp: Math.round(Date.now() / 1000) + 3600,
 		}
